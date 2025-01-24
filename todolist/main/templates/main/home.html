@@ -7,19 +7,23 @@
     </div>
     <div class="container">
         <h1>My To-Do List</h1>
-        <form method="POST" action="" class="task-input">
+        <form method="POST" action="{% url "main:add_task" %}" class="task-input">
             {% csrf_token %}
             <input type="text" name="task" placeholder="Add a new task..." id="taskInput">
             <button type="submit">Add</button>
         </form>
         <ul class="tasks" id="taskList">
-            {% if tasks %}
-                {% for task in tasks %}
+            {% if session_tasks %}
+                {% for task in session_tasks %}
                     <li>
                         <span>{{ task.text }}</span>
                         <form method="POST" action="#" style="display:inline;">
                             {% csrf_token %}
-                            <button type="submit" class="remove">Remove</button>
+                            <button type="submit" class="complete"><img src="static/images/check_mark.png" alt=""></button>
+                        </form>
+                        <form method="POST" action="#" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="remove"><img src="static/images/trash.png" alt=""></button>
                         </form>
                     </li>
                 {% endfor %}
