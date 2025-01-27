@@ -129,4 +129,4 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-TASKS_SESSION_ID = 'task'
+TASKS_SESSION_ID = 'tasks'

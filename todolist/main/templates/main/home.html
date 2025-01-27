@@ -16,12 +16,26 @@
             {% if session_tasks %}
                 {% for task in session_tasks %}
                     <li>
-                        <span>{{ task.text }}</span>
-                        <form method="POST" action="#" style="display:inline;">
+                        <span {% if task.completed %} class='task_completed' {% endif %}>{{ task.text }}</span>
+                        <form method="POST" action="{% url "main:change_status_session" task.task_counter %}" style="display:inline;">
                             {% csrf_token %}
                             <button type="submit" class="complete"><img src="static/images/check_mark.png" alt=""></button>
                         </form>
-                        <form method="POST" action="#" style="display:inline;">
+                        <form method="POST" action="{% url "main:remove_session_task" task.task_counter %}" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="remove"><img src="static/images/trash.png" alt=""></button>
+                        </form>
+                    </li>
+                {% endfor %}
+            {% elif db_tasks %}
+                {% for task in db_tasks %}
+                    <li>
+                        <span {% if task.completed %} class='task_completed' {% endif %}>{{ task.text }}</span>
+                        <form method="POST" action="{% url "main:change_status" task.id %}" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="complete"><img src="static/images/check_mark.png" alt=""></button>
+                        </form>
+                        <form method="POST" action="{% url "main:remove_task" task.id %}" style="display:inline;">
                             {% csrf_token %}
                             <button type="submit" class="remove"><img src="static/images/trash.png" alt=""></button>
                         </form>
