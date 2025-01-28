@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block container %}
+    <div class="container">
+        <div class="form-card">
+            <h2>Register</h2>
+            <form method="POST" action="">
+                {% csrf_token %}
+                {% for f in form %}
+                    {% if f.name == 'password1' or f.name == 'password2' %}
+                        <div class="input-group">
+                            <label for="{{ f.id_for_label }}">{{ f.name }}</label>
+                            <input type="password" id="{{ f.name }}" name="{{ f.name }}" required>
+                            <div class="form-error">{{ f.errors }}</div>
+                        </div>
+                    {% else %}
+                        <div class="input-group">
+                            <label for="{{ f.id_for_label }}">{{ f.name }}</label>
+                            <input type="text" id="{{ f.name }}" name="{{ f.name }}" required>
+                            <div class="form-error">{{ f.errors }}</div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                <button type="submit" class="btn primary-btn">Register</button>
+            </form>
+            <p>Already have an account? <a href="{% url "users:login" %}">Login here</a></p>
+        </div>
+    </div>
+{% endblock container %}

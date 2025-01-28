@@ -1,10 +1,6 @@
 {% extends "base.html" %}
 
 {% block container %}
-    <div class="auth-buttons">
-        <a href="#" class="register">Register</a>
-        <a href="#" class="login">Login</a>
-    </div>
     <div class="container">
         <h1>My To-Do List</h1>
         <form method="POST" action="{% url "main:add_task" %}" class="task-input">
@@ -27,7 +23,8 @@
                         </form>
                     </li>
                 {% endfor %}
-            {% elif db_tasks %}
+            {% endif %}
+            {% if db_tasks %}
                 {% for task in db_tasks %}
                     <li>
                         <span {% if task.completed %} class='task_completed' {% endif %}>{{ task.text }}</span>
@@ -41,9 +38,11 @@
                         </form>
                     </li>
                 {% endfor %}
-            {% else %}
+            {% endif %}
+            {% if not db_tasks and not session_tasks %}
                 <li class="empty">No tasks yet!</li>
             {% endif %}
         </ul>
     </div>
+
 {% endblock container %}

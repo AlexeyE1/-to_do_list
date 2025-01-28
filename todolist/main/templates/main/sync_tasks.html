@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Sync Tasks</title>
+</head>
+<body>
+    <!-- Скрытая форма для отправки POST запроса -->
+    <form id="sync-form" action="{% url 'main:sync_tasks' %}" method="POST" style="display:none;">
+        {% csrf_token %}
+    </form>
+
+    <script type="text/javascript">
+        // После загрузки страницы отправляем POST запрос
+        window.onload = function() {
+            document.getElementById("sync-form").submit();
+        };
+    </script>
+</body>
+</html>

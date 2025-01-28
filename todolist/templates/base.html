@@ -13,6 +13,19 @@
     </style>
 </head>
 <body>
+<div class="auth-buttons">
+    <a href="{% url "main:task_list" %}" class="btn home">Home</a>
+    {% if user.is_authenticated %}
+        <a href="#" class="btn profile">Profile</a>
+        <form method="POST" action="{% url 'users:logout' %}">
+            {% csrf_token %}
+            <button type="submit" class="btn logout">Logout</button>
+        </form>
+    {% else %}
+        <a href="{% url 'users:login' %}" class="btn login">Login</a>
+        <a href="{% url 'users:register' %}" class="btn register">Register</a>
+    {% endif %}
+</div>
 {% block container %}
 {% endblock container %}
 

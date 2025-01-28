@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'main',
+    'users',
 ]
 
 MIDDLEWARE = [
@@ -130,3 +131,12 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 TASKS_SESSION_ID = 'tasks'
+
+AUTHENTICATION_BACKENDS = [
+    'users.auth.EmailAuthBackend',
+    'django.contrib.auth.backends.ModelBackend',
+]
+
+LOGIN_REDIRECT_URL = 'main:sync_tasks'
+LOGOUT_REDIRECT_URL = 'main:task_list'
+LOGIN_URL = 'users:login'
