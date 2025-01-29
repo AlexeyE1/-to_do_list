@@ -12,7 +12,7 @@ class TaskListView(View):
 
         session_tasks = request.session.get('tasks', [])
         
-        db_tasks = Task.objects.filter(user=request.user) if request.user.is_authenticated else []
+        db_tasks = Task.objects.filter(user=request.user).order_by('completed', '-id') if request.user.is_authenticated else []
         print(db_tasks)
         return render(request, 'main/home.html', {
             'session_tasks': sorted(session_tasks, key=lambda x: (not(x['completed']), x['task_counter']), reverse=True),

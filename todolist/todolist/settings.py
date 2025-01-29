@@ -111,7 +111,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
-LANGUAGE_CODE = 'ru-RU'
+LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
 
@@ -140,3 +140,11 @@ AUTHENTICATION_BACKENDS = [
 LOGIN_REDIRECT_URL = 'main:sync_tasks'
 LOGOUT_REDIRECT_URL = 'main:task_list'
 LOGIN_URL = 'users:login'
+
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'ae0128019@gmail.com'
+EMAIL_HOST_PASSWORD = 'ernm bujn eknb cwbc'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
