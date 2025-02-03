@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 
+{% load static %}
 {% block container %}
     <div class="container">
         <div class="form-card">
@@ -23,6 +24,15 @@
             </form>
             <p>Don't have an account? <a href="{% url 'users:register' %}">Register here</a></p>
             <p><a href="{% url "users:password_reset" %}">Forgot your password?</a></p>
+            
+            <hr>
+            
+            <div class="google-auth">
+                <a href="{% url "social:begin" "google-oauth2" %}" class="btn google-btn">
+                    <img src="{% static 'images/google.png' %}" alt="Google Logo" class="google-logo">
+                    Sign in with Google
+                </a>
+            </div>
         </div>
     </div>
 {% endblock container %}
