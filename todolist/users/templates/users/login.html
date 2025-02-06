@@ -9,12 +9,11 @@
                 {% csrf_token %}
                 {% for f in form %}
                     <div class="input-group">
-                        <label for="{{ f.id_for_label }}">{{ f.label }}</label>
-                        {% if f.name == 'password' %}
-                            <input type="password" id="{{ f.name }}" name="{{ f.name }}" required>
-                        {% else %}
-                            <input type="text" id="{{ f.name }}" name="{{ f.name }}" required>
-                        {% endif %}
+                        <div class="input-group">
+                            <label for="{{ f.id_for_label }}">{{ f.label }}</label>
+                            {{ f }}
+                            <div class="form-error">{{ f.errors }}</div>
+                        </div>
                     </div>
                 {% endfor %}
                 <div class="form-error">

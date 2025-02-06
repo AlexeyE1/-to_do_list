@@ -7,19 +7,11 @@
             <form method="POST" action="">
                 {% csrf_token %}
                 {% for f in form %}
-                    {% if f.name == 'password1' or f.name == 'password2' %}
-                        <div class="input-group">
-                            <label for="{{ f.id_for_label }}">{{ f.name }}</label>
-                            <input type="password" id="{{ f.name }}" name="{{ f.name }}" required>
-                            <div class="form-error">{{ f.errors }}</div>
-                        </div>
-                    {% else %}
-                        <div class="input-group">
-                            <label for="{{ f.id_for_label }}">{{ f.name }}</label>
-                            <input type="text" id="{{ f.name }}" name="{{ f.name }}" required>
-                            <div class="form-error">{{ f.errors }}</div>
-                        </div>
-                    {% endif %}
+                    <div class="input-group">
+                        <label for="{{ f.id_for_label }}">{{ f.label }}</label>
+                        {{ f }}
+                        <div class="form-error">{{ f.errors }}</div>
+                    </div>
                 {% endfor %}
                 <button type="submit" class="btn primary-btn">Register</button>
             </form>
